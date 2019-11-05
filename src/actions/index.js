@@ -1,20 +1,28 @@
-export const projectMarks = id => {
+export const htmlprojectMarks = id => {
   return {
-    type: 'PROJECT',
+    type: 'HTMLPROJECT',
     payload: id
   };
 };
 
-export const homeworkMarks = id => {
+export const htmlhomeworkMarks = id => {
   return {
-    type: 'HOMEWORK',
+    type: 'HTMLHOMEWORK',
     payload: id
   };
 };
 
-export const UserLogged =  id => {
+export const cssprojectMarks = id => {
   return {
-    type: 'SIGN_IN',
+    type: 'CSSPROJECT',
     payload: id
   };
 };
+
+export const csshomeworkMarks = id => {
+  return {
+    type: 'CSSHOMEWORK',
+    payload: id
+  };
+};
+

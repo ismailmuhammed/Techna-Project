@@ -1,33 +1,37 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
-
-import { projectMarks, homeworkMarks } from '../../actions/index';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './user.css';
 
+import Skills from '../skills/skills';
+
 const SingleUser = props => {
-  const dispatch = useDispatch();
   const users = useSelector(state => state.users);
   const userIndex = users.findIndex(
     user => user.id === parseInt(props.match.params.id)
   );
-  const { id, name, project, homework } = users[userIndex];
+  const { id, name, html, css, totalHtml, totalCss } = users[userIndex];
   return (
     <div className='main'>
-      <Link to="/" className="btn-b">Back to all Users</Link>
+      <Link to='/' className='btn-b'>
+        Back to all Users
+      </Link>
       <div className='singleuser'>
         <h1>Name : {name}</h1>
-        <h3>Project Marks: {project} </h3>
-        <h3>Homework : {homework} </h3>
+        <h3>Total Marks: {totalHtml + totalCss} </h3>
+        <h3>HTML: {totalHtml} </h3>
+        <h3>CSS : {totalCss} </h3>
       </div>
-      <div className='buttons'>
-        <button className='btn' onClick={() => dispatch(projectMarks(id))}>
-          20 Marks For Project
-        </button>
-        <button className='btn' onClick={() => dispatch(homeworkMarks(id))}>
-          10 Marks For Homework
-        </button>
+      <div className='skills'>
+        <h2>Skills</h2>
+        <Skills
+          Hproject={html.project}
+          Hhomework={html.homework}
+          Cproject={css.project}
+          Chomework={css.homework}
+          id={id}
+        />
       </div>
     </div>
   );
